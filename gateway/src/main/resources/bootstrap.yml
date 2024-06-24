@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: gateway
+  profiles:
+    active: local
+  cloud:
+    config:
+      uri: ${CONFIG_URI:http://localhost:8761}
+      fail-fast: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
+
+springdoc:
+  swagger-ui:
+    path: /api-doc/ui.html
+    use-root-path: true
+    urls:
+      - name: auth-service
+        url: /auth-service/v3/api-docs
+      - name: order-service
+        url: /order-service/v3/api-docs
+      - name: payment-service
+        url: /payment-service/v3/api-docs
+      - name: inventory-service
+        url: /inventory-service/v3/api-docs
+      - name: delivery-service
+        url: /delivery-service/v3/api-docs
+
